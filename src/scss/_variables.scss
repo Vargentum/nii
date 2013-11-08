@@ -1,0 +1,24 @@
+// layout params
+$baseMaxWidth                       : 1000px;
+$baseMinWidth                       : $baseMaxWidth;
+$footerHeight                       : 220px;
+// colors
+$baseFontColor                      : #333;
+$titleColor 						            : #000;
+$brandColor                         : #0f4b49;
+$bodyColor                          : #fff;
+$inputColor                         : $baseFontColor;
+//links colors
+$linkColor                          : $brandColor;
+$activeLinkColor                    : $linkColor;
+$visitedLinkColor                   : $linkColor;
+$hoverLinkColor                     : $linkColor;
+$focusedLinkColor                   : $linkColor;
+//fonts
+$baseFamily                         : "Open Sans", sans-serif;
+//misc
+$baseFontSize                       : 12px;
+$baseLineHeight                     : 1.4;
+$paragraphSpace                     : 15px;
+$inputHeight                        : 30px;
+$experimental-support-for-svg       : true;

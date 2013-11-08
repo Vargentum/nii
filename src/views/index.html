@@ -1,0 +1,102 @@
+<!--[if IE 8]> <html class="ie ie8" lang="en"> <![endif]-->
+<!--[if IE 9]> <html class="ie ie9" lang="en"> <![endif]-->
+<html class="no-js">
+
+<!--HEAD  start-->
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <!--SEO skeleton-->
+  <meta name="robots" content="">
+  <meta name="description" content="" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="" />
+  <!--allows ie8 users to use Google Chrome Frame plugin in our browser-->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <link href="//www.google-analytics.com" rel="dns-prefetch">
+  <link href="//ajax.googleapis.com" rel="dns-prefetch">
+  <!--CSS include-->
+  <link href="assets/css/core.css" rel="stylesheet">
+  <link href="assets/css/custom.css" rel="stylesheet">
+
+  <script src="assets/js/vendor/modernizr-2.6.2.min.js"></script>
+
+  <!--google maps API-->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKjHiTQ94z3p3lENGxVRtNGggsdP6JqiQ&sensor=false"></script>
+</head>
+<!--HEAD end-->
+
+
+<body itemscope itemtype='http://schema.org/WebPage'>
+
+<!--LAYOUT start (all without footer)-->
+<div class="l-layout  stickyFooter_helper-1">
+
+  <!--PAGE SIDEBAR-->
+  include "partials/l-sidebar"
+  <!--PAGE SIDEBAR end -->
+
+  <!--MAIN COLUMN start-->
+  <div class="l-main" role="main">
+
+    <!--PAGE HEADER start-->
+    include "partials/l-header"
+    <!--PAGE HEADER end-->
+
+
+    <!--TEMPLATE article-->
+    <!--include "partials/t-article"-->
+    <!--TEMPLATE article END-->
+
+
+    <!--TEMPLATE contacts-->
+    include "partials/t-contacts"
+    <!--TEMPLATE contacts END-->
+
+
+    <!--TEMPLATE main-->
+    <!--include "partials/t-main"-->
+    <!--TEMPLATE main END-->
+
+
+    <!--TEMPLATE news-->
+    <!--include "partials/t-news"-->
+    <!--TEMPLATE news END-->
+
+
+    <!--TEMPLATE publications-->
+    <!--include "partials/t-publications"-->
+    <!--TEMPLATE publications END-->
+
+  </div>
+  <!--MAIN COLUMN end-->
+
+  <div class="stickyFooter_helper-2"></div>
+</div>
+<!--LAYOUT end -->
+
+<!--start FOOTER-->
+include "partials/l-footer"
+<!-- end FOOTER -->
+
+<!--SCRIPTS  start-->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-1.10.2.min.js"><\/script>');</script>
+
+<!--developer scripts-->
+<script src="assets/js/scripts.min.js"></script>
+
+<script>
+  (function(f,i,r,e,s,h,l){i['GoogleAnalyticsObject']=s;f[s]=f[s]||function(){
+    (f[s].q=f[s].q||[]).push(arguments)},f[s].l=1*new Date();h=i.createElement(r),
+      l=i.getElementsByTagName(r)[0];h.async=1;h.src=e;l.parentNode.insertBefore(h,l)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-XXXXXXXX-XX');
+  ga('send', 'pageview');
+</script>
+<!--SCRIPTS end-->
+
+</body>
+</html>

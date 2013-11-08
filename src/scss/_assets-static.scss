@@ -1,0 +1,314 @@
+/*===============================================================
+Imports & includes
+===============================================================*/
+@import "compass/reset";
+@import "h5bp";
+@include h5bp-display;
+@include h5bp-chromeframe;
+@include h5bp-media;
+@include h5bp-base;
+@include h5bp-typography;
+@include h5bp-figures;
+@include h5bp-forms;
+@include h5bp-embeds;
+@include h5bp-tables;
+@include h5bp-helpers;
+@import "compass";
+
+/*===============================================================
+Extends
+===============================================================*/
+%input-reset{
+  background-color: transparent;
+  border: none;
+  &:hover,&:focus{outline: none;}
+}
+%block-reset{
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+%text-hide {
+  font: 0/0 serif;
+  text-shadow: none;
+  color: transparent;
+}
+.dl-inline{
+  @include pie-clearfix;
+  &>dt{float: left; margin-right: 5px;}
+}
+%no-focusOutline{
+  &:focus{outline: none;}
+}
+
+%flexbox{
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+%no-gutters{
+  @extend %text-hide;
+  &>*{
+    font-size: $baseFontSize;
+    line-height: $baseLineHeight;
+    font-family: $baseFamily;
+    color: $baseFontColor;
+  }
+}
+
+/*===============================================================
+Mixins
+===============================================================*/
+@mixin pseudo-block($left: auto, $top: auto){
+  content: '';
+  display: block;
+  position: absolute;
+  top: $top;
+  left: $left;
+}
+@mixin pseudo-inline($align: auto){
+  content: '';
+  display: inline-block;
+  vertical-align: $align;
+}
+
+@mixin hLine($align: auto){
+  &>*{
+    display: inline-block;
+    vertical-align: $align;
+  }
+}
+@mixin jLine($align: auto, $unitFontSize: 13px, $unitLineHeight: 1.4){
+  @include hLine($align);
+  text-align: justify;
+  line-height: 0;
+  font-size: 1px;
+  text-justify: newspaper;
+  zoom:1;
+  text-align-last: justify;
+  &:after{
+    @include pseudo-inline;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    width: 100%;
+  }
+  &>*{
+    text-align: left;
+    font-size: $unitFontSize;
+    line-height: $unitLineHeight;
+  }
+}
+@mixin jLine-simple($width-1: 49%, $width-2: $width-1){
+  @include pie-clearfix;
+  &>*{float: left; width: $width-1;}
+  &>*+*{float: right; width: $width-2;}
+}
+@mixin wrapper($min: $baseMinWidth, $max: $baseMaxWidth){
+  min-width: $min;
+  max-width: $max;
+  margin-left:auto;
+  margin-right: auto;
+}
+
+@mixin size($w: auto, $h: $w){
+  width: $w;
+  height: $h;
+}
+
+@mixin image-2x($image, $width, $height) {
+  @media (min--moz-device-pixel-ratio: 1.3),
+  (-o-min-device-pixel-ratio: 2.6/2),
+  (-webkit-min-device-pixel-ratio: 1.3),
+  (min-device-pixel-ratio: 1.3),
+  (min-resolution: 1.3dppx) {
+    /* on retina, use image that's scaled by 2 */
+    background-image: url($image);
+    background-size: $width $height;
+  }
+}
+@mixin img-container($width:auto, $height:auto){
+  width:  $width;
+  height: $height;
+  img{max-width: 100%;}
+}
+@mixin placeholder-color($color){
+  ::-webkit-input-placeholder {color: $color;}
+  :-moz-placeholder           {color: $color;}
+  ::-moz-placeholder          {color: $color;}
+  :-ms-input-placeholder      {color: $color;}
+}
+@mixin centering-absolute($width, $height){
+  width: $width;
+  height: $height;
+  position: absolute;
+  left:50%;
+  top:50%;
+  margin-top: -$height /2;
+  margin-left: -$width /2;
+}
+@mixin vendorize($prop, $val){
+  -webkit-#{$prop}: $val;
+  -moz-#{$prop}: $val;
+  -ms-#{$prop}: $val;
+  #{$prop}: $val;
+}
+@mixin position ($position: relative, $coordinates: 0 0 0 0) {
+  @if type-of($position) == list {
+    $coordinates:$position;
+    $position:relative;
+  }
+
+  $top:nth($coordinates, 1);
+  $right:nth($coordinates, 2);
+  $bottom:nth($coordinates, 3);
+  $left:nth($coordinates, 4);
+
+  position: $position;
+
+  @if $top == auto {
+    top:$top;
+  }
+  @else if not(unitless($top)) {
+    top:$top;
+  }
+  @if $right == auto {
+    right:$right;
+  }
+  @else if not(unitless($right)) {
+    right:$right;
+  }
+  @if $bottom == auto {
+    bottom:$bottom;
+  }
+  @else if not(unitless($bottom)) {
+    bottom:$bottom;
+  }
+  @if $left == auto {
+    left:$left;
+  }
+  @else if not(unitless($left)) {
+    left:$left;
+  }
+}
+//Link Mixin Colors
+@mixin singleLink($lmc-1: $linkColor){@include link-colors($lmc-1,$lmc-1,$lmc-1,$lmc-1,$lmc-1);}
+@mixin simpleLink($lmc-1: $linkColor, $lmc-2: $hoverLinkColor){@include link-colors($lmc-1,$lmc-2,$lmc-1, $lmc-1, $lmc-2);}
+@mixin singleLink-custom($lmc-1: $linkColor, $decorationType: dotted){
+  @include singleLink($lmc-1);
+  text-decoration: none;
+  border-bottom: 1px $decorationType $lmc-1;
+}
+@mixin simpleLink-custom($lmc-1: $linkColor, $lmc-2: $hoverLinkColor, $decorationType: dotted){
+  @include simpleLink($lmc-1,$lmc-2);
+  text-decoration: none;
+  border-bottom: 1px $decorationType $lmc-1;
+  &:hover,&:focus{border-bottom-color: $lmc-2;}
+}
+//for responsive
+@mixin respond-to($media) {
+  @if $media == ie10{
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {@content;}
+  }
+  @else if $media == iphone{
+    @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {@content;}
+  }
+  @else if $media == ipad{
+    @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {@content;}
+  }
+}
+@mixin breakpoint($val){
+  @media only screen and (max-width: $val) {@content;}
+}
+@mixin fluid-width($width, $parentWidth){
+  width: $width / $parentWidth * 100%;
+}
+@mixin fluid-prop($prop, $width, $parentWidth){
+  #{$prop}: $width / $parentWidth * 100%;
+}
+
+/*===============================================================
+Layout helpers
+===============================================================*/
+.l-hLine{@include hLine();}
+.l-hLine--bottom{@include hLine(bottom);}
+.l-hLine--middle{@include hLine(middle);}
+.l-hLine--top{@include hLine(top);}
+
+.l-jLine{@include jLine;}
+.l-jLine--bottom{@include jLine(bottom);}
+.l-jLine--middle{@include jLine(middle);}
+.l-jLine--top{@include jLine(top);}
+
+.l-jLine--simple{@include jLine-simple;}
+
+.l-flexbox{@extend %flexbox;}
+
+.l-container{
+  @include wrapper;
+  padding: 0 30px;
+}
+/*===============================================================
+Inputs
+===============================================================*/
+input[type="search"] {
+  -webkit-appearance: textfield;
+}
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+input[type="file"],
+input[type="image"],
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+input[type="radio"],
+input[type="checkbox"] {
+  width: auto;
+}
+select,
+input[type="file"] {
+  *margin-top: 4px; 				/* In IE7, the height of the select element cannot be changed by height, only font-size */
+}
+select:focus,
+input[type="file"]:focus,
+input[type="radio"]:focus,
+input[type="checkbox"]:focus {
+  outline: thin dotted #333;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+/*===============================================================
+Typography
+===============================================================*/
+html, button, input, select, textarea {
+  font-family: $baseFamily;
+  color:$baseFontColor;
+}
+html{
+  height: 100%;
+}
+body{
+  height: 100%;
+  font-size: $baseFontSize;
+  line-height: $baseLineHeight;
+}
+h1,h2,h3,h4,h5,h6,p,ul,ol{
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+em{font-style: italic;}
+
+/*===============================================================
+Border-box model
+===============================================================*/
+*,*:before,*:after,input[type=search]{@include box-sizing(border-box);}

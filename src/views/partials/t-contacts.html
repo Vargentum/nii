@@ -1,0 +1,56 @@
+<div class="template-contacts"  itemscope itemtype="http://schema.org/CollegeOrUniversity">
+  <header>
+    <h1 class="ui-section__title">Контактная информация</h1>
+  </header>
+  <dl class="dl-inline" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+    <dt>Адрес:</dt>
+    <dd>119019, Москва, ул. Знаменка, д. 10.</dd>
+  </dl>
+  <dl itemprop="telephone">
+    <dt>Телефоны:</dt>
+    <dd>
+      <p>(495) 691-8825 - начальник учебного отдела.</p>
+      <p>(495) 691-6052 - учебная часть.</p>
+    </dd>
+  </dl>
+  <dl class="dl-inline" itemprop="faxNumber">
+    <dt>Факс:</dt>
+    <dd>(495) 691-8574</dd>
+  </dl>
+  <dl class="dl-inline" itemprop="email">
+    <dt>E-mail:</dt>
+    <dd><a href="mailto:apu@apu.edu.ru">apu@apu.edu.ru</a></dd>
+    <dt>Предложения по работе сайта:</dt>
+    <dd><a href="mailto:info@apu.edu.ru">info@apu.edu.ru</a></dd>
+  </dl>
+
+  <!--map-->
+  <div class="map" id="map"></div>
+
+  <!--feedback-->
+  <form class="feedback">
+    <header>
+      <h1 class="ui-section__title">Обратная связь</h1>
+    </header>
+    <label class="feedback__label">
+      <span class="feedback__label__caption">ФИО *</span>
+      <input class="feedback__input" type="text" required/>
+    </label>
+    <label class="feedback__label">
+      <span class="feedback__label__caption">Телефон</span>
+      <input class="feedback__input" type="text"/>
+    </label>
+    <label class="feedback__label">
+      <span class="feedback__label__caption">E-mail *</span>
+      <input class="feedback__input" type="text" required/>
+    </label>
+    <label class="feedback__label">
+      <span class="feedback__label__caption">Сообщение *</span>
+      <textarea class="feedback__textarea" required></textarea>
+    </label>
+    <label class="feedback__label">
+      <button type="submit" class="ui-button">Отправить</button>
+    </label>
+    <p>* - поля обязательны к заполнению</p>
+  </form>
+</div>
