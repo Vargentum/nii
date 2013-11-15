@@ -24,4 +24,32 @@
     google.maps.event.addDomListener(window, 'load', initialize);
   });
 
+  //calendar init
+  $(function(){
+    moment.lang('ru');
+
+    $('#calendar').clndr({
+      weekOffset: 1,
+      daysOfTheWeek: ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'],
+      clickEvents: {
+        click: function(target){
+          console.log(target);
+          $('.event-popup').remove();
+          var eventTitle = target.events[0].title;
+          var eventBody = target.events[0].body;
+          $('<div class="event-popup">' +
+            '<h2 class="event-popup-title">'+eventTitle+'</h2>' +
+            '<p>'+eventBody+'</p>' +
+            '<a class="event-popup-close"></a>' +
+            '</div>').appendTo(target.element);
+          $('.event-popup-close').click(function(){
+            $('.event-popup').remove();
+          });
+        }
+      },
+      events: eventsList,
+      dateParameter: 'date'
+    });
+  });
+
 })(jQuery, window, document);

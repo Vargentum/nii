@@ -30,17 +30,18 @@
   @include singleLink($titleColor);
   padding: 3px 13px;
   border: 1px solid #989595;
-  background-color: #d4d0bc;
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,.55);
-  background-image: linear-gradient(top, #feffff -25%, rgba(255,255,255,0) 125%);
+  background: #f9f8f5;
+  background: linear-gradient(to bottom, #f9f8f5 0%,#dad7c7 100%);
   &:hover,&:focus{
     outline: none;
-    background-color: #f2efe4;
     text-decoration: none;
+    background: #fdfdfb;
+    background: linear-gradient(to bottom, #fdfdfb 0%,#f4f2e9 100%);
   }
   &:active{
     box-shadow: inset 0 1px 5px rgba(0,0,0,.39);
-    background-image: linear-gradient(bottom, #feffff -25%, rgba(255,255,255,0) 125%);
+    background: #dad7c7;
+    background: linear-gradient(to bottom, #dad7c7 0%,#f9f8f5 100%);
   }
 }
 .ui-button--back{
@@ -147,8 +148,7 @@ input.search__field{
   text-align: center;
   padding: 13px 5px;
   width: 16.6666%;
-  background-color: #0f4b49;
-  background-image: linear-gradient(top, rgba(255,255,255,.12) 0%, rgba(255,255,255,0) 100%);
+  background: #0f4b49 inline-image('nav-unit.png') repeat-x;
   //divider
   &:before{
     @include pseudo-block(-1px, 0);
@@ -160,12 +160,11 @@ input.search__field{
     display: none;
   }
   &.is-active{
-    background-color: #c7c1a5;
+    background: #c7c1a5 inline-image('nav-unit-active.png') repeat-x;
     color: #333;
     &:hover,&:focus{text-decoration: none;}
   }
 }
-
 
 /*===============================================================
   $SIDEBAR
@@ -578,9 +577,147 @@ input.search__field{
 
 
 /*===============================================================
-PLUGIN OVERRIDING
+  $CALENDAR Plugin
 ===============================================================*/
+.clndr{
+  border: 1px solid #333;
+  background-color: #0d403e;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.24);
+  padding: 0 3px 3px;
+  user-select: none;  //disable text highlighting
+}
 
+.clndr-controls{
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 7px;
+  @include pie-clearfix;
+  position: relative;
+  .month{
+    position: absolute;
+    left:0;
+    top:5px;
+    width: 100%;
+    text-align: center;
+    text-transform: capitalize;
+  }
+}
+.clndr-control-button{
+  position: relative;
+  z-index: 1;
+  float: left;
+  &.rightalign{
+    float: right;
+  }
+}
+.clndr-previous-button{
+  @extend %text-hide;
+  display: block;
+  width: 9px;
+  height: 15px;
+  opacity: .7;
+  @include icon-sprite('calendar-control-prev');
+  cursor: pointer;
+  &:hover,&:focus{
+    outline: none;
+    opacity: 1;
+  }
+  &:active{
+    opacity: .5;
+  }
+}
+.clndr-next-button{
+  @extend .clndr-previous-button;
+  @include icon-sprite('calendar-control-next');
+}
+
+.clndr-table{
+  width: 100%;
+  border: 2px solid #eff0eb;
+  .header-day{
+    background-color: #e3e4db;
+    color: #656565;
+    font-size: 11px;
+    text-shadow: 0 1px 0 rgba(255,255,255,.5);
+    text-align: center;
+    padding: 5px 0;
+  }
+  .day{
+    position: relative;
+    padding: 5px 0;
+    background-color: #e3e4db;
+    border: 1px solid #a3a3a3;
+    text-shadow: 0 1px 0 rgba(255,255,255,.5);
+    cursor: default;
+    &:before{
+      @include pseudo-block(0,0);
+      width: 100%;
+      height: 1px;
+      background-color: #fff;
+    }
+    &.adjacent-month{
+      color: #999;
+    }
+    &.event{
+      cursor: pointer;
+      border: 1px solid #b9b9b9;
+      @include icon-sprite('calendar-event-highlighting');
+      &:before{display: none}
+      .day-contents{color: #fff;}
+    }
+    &.today{
+      cursor: pointer;
+      border: 1px solid #b9b9b9;
+      @include icon-sprite('calendar-today-highlighting');
+      &:before{display: none}
+      .day-contents{color: #fff;}
+    }
+  }
+  .day-contents{
+    display: block;
+    height: 100%;
+    color: #333;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+  }
+  .event-popup{
+    position: absolute;
+    bottom:100%;
+    margin-bottom: 15px;
+    width: 210px;
+    z-index: 1;
+    background-color: #fff;
+    padding: 10px 10px 15px;
+    box-shadow: 0 1px 15px rgba(0,0,0,.65);
+    color: #656565;
+    font-size: 10px;
+    &:before{
+      @include pseudo-block(10px, 100%);
+      border-left:    14px solid #fff;
+      border-bottom:  16px solid transparent;
+    }
+  }
+  .event-popup-title{
+    color: $titleColor;
+    font-size: 12px;
+    margin-bottom: 5px;
+  }
+  .event-popup-close{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 9px;
+    height: 9px;
+    cursor: pointer;
+    @include icon-sprite('event-popup-close');
+    &:hover,&:focus{
+      outline: none;
+      @include icon-sprite('event-popup-close-active');
+    }
+  }
+}
 /*===============================================================
 HACKS
 ===============================================================*/
